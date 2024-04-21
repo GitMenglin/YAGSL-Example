@@ -30,9 +30,8 @@ import java.io.File;
 public class RobotContainer {
 
   // The robot's subsystems and commands are defined here...
-  private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
-      "swerve/neo"));
-
+  private final SwerveSubsystem drivebase = new SwerveSubsystem(
+      new File(Filesystem.getDeployDirectory(), "swerve/neo"));
   // Replace with CommandPS4Controller or CommandJoystick if needed
   final CommandXboxController driverXbox = new CommandXboxController(0);
 
@@ -101,7 +100,7 @@ public class RobotContainer {
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
-    driverXbox.a().onTrue((Commands.runOnce(drivebase::zeroGyro)));
+    driverXbox.a().onTrue(Commands.runOnce(drivebase::zeroGyro));
     driverXbox.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
     driverXbox.b().whileTrue(
         Commands.deferredProxy(() -> drivebase.driveToPose(
